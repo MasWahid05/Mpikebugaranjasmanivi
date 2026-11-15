@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Media interaktif PJOK Kelas 6 SD Jaya Manggala: tujuan, video, materi, aksi kelas, kuis, dan Lacak Bug. Guru Pengampu: Syaifudin Wahid, M.Pd">
+<meta name="description" content="Media interaktif PJOK Kelas 6 SD Jaya Manggala: tujuan, video, materi, gerakan, aksi kelas, kuis, dan Lacak Bug. Guru Pengampu: Syaifudin Wahid, M.Pd">
 <style>:root{color-scheme:light}html,body{margin:0}body{font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style><title>Energi Super Kelas 6</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@600;800;900&display=swap">
 <style>
@@ -80,6 +80,21 @@ button{font:inherit;cursor:pointer}
 .tombol:disabled{opacity:.5;cursor:default}
 .skor{font-family:var(--display);font-size:64px;color:var(--koral);line-height:1}
 /* lacak bug */
+/* gerakan */
+.gerak-pilih{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.gerak-pilih button{border:3px solid var(--garis);border-radius:14px;background:var(--lembut);color:var(--teks);padding:7px 12px;font-weight:900;font-size:15px;box-shadow:3px 4px 0 var(--garis);display:flex;gap:6px;align-items:center}
+.gerak-pilih button i{font-style:normal;font-size:11px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#fff;border-radius:6px;padding:2px 6px}
+.gerak-pilih button[aria-pressed="true"]{background:var(--kuning);color:#2B1A3F}
+.gerak-isi{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px;align-items:start}
+.gerak-kanvas{display:grid;gap:12px;min-width:0}
+.gerak-kanvas canvas{width:100%;aspect-ratio:640/440;border:5px solid var(--garis);border-radius:20px;background:#F7FBFF;box-shadow:6px 8px 0 var(--garis)}
+.gerak-info{display:grid;gap:12px;min-width:0}
+.gerak-info h3{font-size:clamp(28px,4vw,40px);color:var(--koral)}
+.gerak-info ol{margin:0;padding-left:22px;display:grid;gap:6px;font-weight:800}
+.gerak-info .kotak3{display:grid;gap:8px}
+.gerak-info .kotak3 div{border:3px solid var(--garis);border-radius:14px;padding:8px 12px;background:var(--lembut);font-weight:800}
+.gerak-info .kotak3 b{display:block;font-family:var(--display);font-weight:400;font-size:18px}
+@media (max-width:720px){.gerak-isi{grid-template-columns:1fr}}
 /* aksi kelas */
 .alat-pilih{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
 .alat-pilih button{display:grid;gap:2px;text-align:left;border:4px solid var(--garis);border-radius:16px;background:var(--lembut);color:var(--teks);padding:10px 14px;font-weight:800;font-size:15px;box-shadow:3px 4px 0 var(--garis)}
@@ -165,9 +180,10 @@ select.pilih-blok{font:inherit;font-weight:800;border:3px solid var(--garis);bor
     <a href="#tujuan" data-ke="tujuan"><b>1</b>Tujuan</a>
     <a href="#video" data-ke="video"><b>2</b>Video</a>
     <a href="#materi" data-ke="materi"><b>3</b>Materi</a>
-    <a href="#aksi-kelas" data-ke="aksi-kelas"><b>4</b>Aksi Kelas</a>
-    <a href="#kuis" data-ke="kuis"><b>5</b>Kuis</a>
-    <a href="#lacak-bug" data-ke="lacak-bug"><b>6</b>Lacak Bug</a>
+    <a href="#gerakan" data-ke="gerakan"><b>4</b>Gerakan</a>
+    <a href="#aksi-kelas" data-ke="aksi-kelas"><b>5</b>Aksi Kelas</a>
+    <a href="#kuis" data-ke="kuis"><b>6</b>Kuis</a>
+    <a href="#lacak-bug" data-ke="lacak-bug"><b>7</b>Lacak Bug</a>
   </nav>
 
   <!-- 1. TUJUAN -->
@@ -238,6 +254,22 @@ select.pilih-blok{font:inherit;font-weight:800;border:3px solid var(--garis);bor
     </div>
   </section>
 
+  <!-- GERAKAN: animasi gerakan praktik -->
+  <section id="v-gerakan" class="kartu" hidden>
+    <span class="pita" style="background:var(--ungu)">Gerakan Praktik</span>
+    <p style="margin-top:0;max-width:70ch">Pilih gerakan untuk melihat contohnya bergerak. Perhatikan poin tekniknya, lalu tirukan bersama kelompokmu.</p>
+    <div class="gerak-pilih" id="gerakPilih" aria-label="Pilih gerakan"></div>
+    <div class="gerak-isi">
+      <div class="gerak-kanvas">
+        <canvas id="kanvasGerak" width="640" height="440" aria-label="Animasi gerakan"></canvas>
+        <div class="baris-kontrol"><button class="tombol kecilT" id="gkPutar" type="button">Jeda</button>
+          <div class="pilih" role="group" aria-label="Kecepatan" style="margin:0"><button type="button" data-v="0.4" aria-pressed="false">Lambat</button><button type="button" data-v="1" aria-pressed="true">Normal</button></div>
+          <label class="saklar"><input type="checkbox" id="gkPanduan" checked> Garis bantu</label></div>
+      </div>
+      <div class="gerak-info" id="gerakInfo"></div>
+    </div>
+  </section>
+
   <!-- AKSI KELAS: alat guru untuk proyektor -->
   <section id="v-aksi-kelas" class="kartu" hidden>
     <span class="pita" style="background:var(--kode)">Aksi Kelas</span>
@@ -283,7 +315,7 @@ const ambil=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d
 const gerakPelan=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- navigasi tab (hash) ---------- */
-const VIEW=['tujuan','video','materi','aksi-kelas','kuis','lacak-bug'];
+const VIEW=['tujuan','video','materi','gerakan','aksi-kelas','kuis','lacak-bug'];
 function tampil(){const h=location.hash.slice(1),v=VIEW.includes(h)?h:'tujuan';
   VIEW.forEach(n=>{$('#v-'+n).hidden=n!==v;});
   document.querySelectorAll('.tab a').forEach(a=>a.setAttribute('aria-current',a.dataset.ke===v?'page':'false'));}
@@ -302,6 +334,100 @@ function putarVideo(i){vAktif=i;const v=DAFTAR[i],id=idYoutube(v.link),L=$('#lay
   document.querySelectorAll('#daftarVideo button').forEach((b,j)=>b.setAttribute('aria-pressed',j===i?'true':'false'));}
 if(DAFTAR.length>1)DAFTAR.forEach((v,i)=>{const b=document.createElement('button');b.type='button';b.innerHTML=`<b>Video ${i+1}</b>`;b.append(v.judul||'Video');b.onclick=()=>putarVideo(i);$('#daftarVideo').appendChild(b);});
 putarVideo(0);
+
+/* ---------- GERAKAN: animasi tokoh dari pose kunci (sendi 2D), diputar dari waktu ---------- */
+const GK=$('#kanvasGerak').getContext('2d');
+const ST={h:[300,108],n:[300,150],hip:[300,250],eD:[306,203],tD:[312,255],eJ:[294,203],tJ:[288,255],kD:[306,325],fD:[306,398],kJ:[294,325],fJ:[294,398]};
+const ub=(a,b)=>Object.assign({},a,b);
+const lerpP=(a,b,k)=>{const o={};for(const n in a)o[n]=[a[n][0]+(b[n][0]-a[n][0])*k,a[n][1]+(b[n][1]-a[n][1])*k];return o;};
+const halus=k=>k*k*(3-2*k);
+// kf: daftar [detik, pose] berulang setiap L detik
+function kf(fr,L,t){const tt=((t%L)+L)%L;for(let i=0;i<fr.length;i++){const a=fr[i],b=fr[(i+1)%fr.length],tb=i+1<fr.length?b[0]:L;if(tt>=a[0]&&tt<tb)return lerpP(a[1],b[1],halus((tt-a[0])/Math.max(.001,tb-a[0])));}return fr[0][1];}
+const RUN_A={h:[322,110],n:[310,152],hip:[298,252],eD:[282,200],tD:[268,228],eJ:[328,196],tJ:[348,172],kD:[338,312],fD:[324,386],kJ:[270,330],fJ:[236,352]};
+const RUN_B=ub(RUN_A,{eD:[328,196],tD:[348,172],eJ:[282,200],tJ:[268,228],kD:[270,330],fD:[236,352],kJ:[338,312],fJ:[324,386]});
+const lari=t=>kf([[0,RUN_A],[.25,RUN_B]],.5,t);
+const JJ0={h:[300,108],n:[300,150],hip:[300,250],eD:[272,200],tD:[266,250],eJ:[328,200],tJ:[334,250],kD:[288,325],fD:[285,398],kJ:[312,325],fJ:[315,398]};
+const JJ1=ub(JJ0,{eD:[258,116],tD:[244,72],eJ:[342,116],tJ:[356,72],kD:[272,322],fD:[250,396],kJ:[328,322],fJ:[350,396]});
+const SQ={h:[310,168],n:[292,206],hip:[248,300],eD:[338,214],tD:[386,212],eJ:[332,220],tJ:[380,218],kD:[318,330],fD:[300,398],kJ:[312,334],fJ:[294,398]};
+const TL0=ub(JJ0,{eD:[268,212],tD:[250,240],eJ:[332,212],tJ:[350,240],kD:[293,325],fD:[293,398],kJ:[307,325],fJ:[307,398]});
+const EK1={h:[302,108],n:[300,150],hip:[298,250],eD:[268,188],tD:[244,196],eJ:[332,188],tJ:[356,196],kD:[300,325],fD:[300,398],kJ:[282,318],fJ:[256,296]};
+const EK2=ub(EK1,{kD:[282,318],fD:[256,296],kJ:[300,325],fJ:[300,398]});
+const PL0={h:[388,262],n:[350,290],hip:[262,322],eD:[352,340],tD:[352,396],eJ:[345,340],tJ:[345,396],kD:[232,396],fD:[172,394],kJ:[226,396],fJ:[166,394]};
+const PL1=ub(PL0,{h:[400,255],n:[368,282],hip:[290,347],eD:[368,338],tD:[368,396],eJ:[361,338],tJ:[361,396]});
+const SENTUH={h:[352,214],n:[332,250],hip:[284,300],eD:[348,330],tD:[358,394],eJ:[318,300],tJ:[300,330],kD:[322,338],fD:[316,398],kJ:[268,350],fJ:[248,398]};
+const LN1=ub(ST,{eD:[282,200],tD:[268,228],eJ:[324,198],tJ:[344,176],kD:[342,252],fD:[340,322]});
+const LN2=ub(ST,{eD:[324,198],tD:[344,176],eJ:[282,200],tJ:[268,228],kJ:[342,252],fJ:[340,322]});
+const LG={h:[300,168],n:[300,210],hip:[298,308],eD:[278,254],tD:[296,292],eJ:[320,254],tJ:[302,292],kD:[352,330],fD:[352,398],kJ:[262,382],fJ:[218,396]};
+const PH=ub(ST,{eJ:[336,186],tJ:[370,170],eD:[286,214],tD:[274,264],kD:[302,330],fD:[270,266]});
+const DUDUK=ub(ST,{eD:[318,200],tD:[300,255],eJ:[282,200],tJ:[300,255]});
+const GERAK=[
+ {n:'Jumping Jack',kat:'Pos 1',w:'#FF4F64',depan:1,L:.8,pose:t=>kf([[0,JJ0],[.4,JJ1]],.8,t),dy:t=>-14*Math.abs(Math.sin(t/.8*2*Math.PI)),
+  poin:['Mulai berdiri tegak, tangan di samping badan.','Lompat kecil: kaki dibuka, kedua tangan naik ke atas kepala.','Lompat lagi: kaki rapat, tangan turun.','Mendarat dengan ujung telapak kaki, lutut sedikit ditekuk.'],mudah:'Langkah ke samping bergantian, tanpa lompatan.',sulit:'Percepat gerakan, tetap mendarat ringan.',hindari:'Mendarat dengan tumit dan lutut lurus.'},
+ {n:'Lari Zig-zag',kat:'Pos 2',w:'#FF4F64',L:3,pose:lari,dy:t=>-8*Math.abs(Math.sin(t/.25*Math.PI)),dx:t=>((t%3)/3)*520-260,skala:t=>1+.06*Math.sin((t%3)/3*Math.PI*5),prop:'cone',
+  poin:['Lari melewati 5 cone dengan berkelok.','Badan condong ke depan.','Perpendek langkah saat akan berbelok.','Tangan berayun berlawanan dengan kaki.'],mudah:'Jalan cepat melewati cone.',sulit:'Tambah putaran zig-zag.',hindari:'Berbelok dengan langkah panjang sehingga tergelincir.'},
+ {n:'Squat',kat:'Pos 3',w:'#FF4F64',L:2.8,pose:t=>kf([[0,ST],[.9,SQ],[1.5,SQ],[2.4,ST]],2.8,t),panduan:'squat',
+  poin:['Kaki dibuka selebar bahu.','Turunkan pinggul ke belakang seperti mau duduk di kursi.','Punggung tetap lurus, tangan lurus ke depan.','Lutut tidak melewati ujung jari kaki.','Dorong lantai untuk berdiri kembali.'],mudah:'Squat setengah, turun sedikit saja.',sulit:'Squat jump: lompat saat berdiri.',hindari:'Punggung membungkuk dan lutut maju melewati jari kaki.'},
+ {n:'Lompat Tali',kat:'Pos 4',w:'#FF4F64',depan:1,L:.6,pose:t=>TL0,dy:t=>{const c=Math.cos(t/.6*2*Math.PI);return -26*Math.max(0,c)**2;},prop:'tali',
+  poin:['Pegang ujung tali, siku dekat badan.','Putar tali dengan pergelangan tangan.','Lompat kecil saat tali sampai di bawah kaki.','Mendarat ringan dengan dua kaki.'],mudah:'Lompat di tempat tanpa tali.',sulit:'Percepat irama lompatan.',hindari:'Lompat terlalu tinggi dan mendarat keras.'},
+ {n:'Engklek Kotak',kat:'Pos 5',w:'#FF4F64',L:1.2,pose:t=>kf([[0,EK1],[.55,EK1],[.6,EK2],[1.15,EK2]],1.2,t),dy:t=>-36*Math.abs(Math.sin(t/.6*Math.PI)),prop:'kotak',
+  poin:['Berdiri dengan satu kaki, kaki lain ditekuk ke belakang.','Lompat ke kotak berikutnya dengan satu kaki.','Bergantian kaki kanan dan kiri.','Pandangan ke depan, tangan membantu keseimbangan.'],mudah:'Melangkah pelan di setiap kotak.',sulit:'Percepat, lalu kembali bolak-balik.',hindari:'Melihat ke bawah terus sehingga hilang keseimbangan.'},
+ {n:'Plank Lutut',kat:'Pos 6',w:'#FF4F64',L:4,pose:t=>kf([[0,PL0],[.8,PL1],[3.2,PL1]],4,t),dy:t=>{const k=t%4;return k>.8&&k<3.2?Math.sin(k*3)*1.5:0;},panduan:'plank',
+  poin:['Mulai dari posisi merangkak, lutut di lantai.','Tangan lurus tepat di bawah bahu.','Dorong pinggul hingga badan lurus dari kepala ke lutut.','Kencangkan perut, napas tetap teratur.','Tahan sesuai program, misalnya 20 detik.'],mudah:'Tahan lebih singkat.',sulit:'Plank penuh, bertumpu pada ujung kaki.',hindari:'Pinggul terlalu tinggi atau melorot, dan menahan napas.'},
+ {n:'Lari Bolak-balik',kat:'Pos 7',w:'#FF4F64',L:3.6,pose:t=>{const k=t%3.6;return(k>1.3&&k<1.8)||k>3.1?SENTUH:lari(t);},
+  dx:t=>{const k=t%3.6;return k<1.3?lerp2(-200,160,k/1.3):k<1.8?160:k<3.1?lerp2(160,-200,(k-1.8)/1.3):-200;},balik:t=>{const k=t%3.6;return k>=1.8&&k<3.6;},prop:'garis',
+  poin:['Lari cepat ke garis di depan (5 meter).','Bungkukkan badan dan sentuh garis dengan tangan.','Berbalik dengan menekuk lutut.','Lari kembali ke garis awal.'],mudah:'Jalan cepat di antara garis.',sulit:'Percepat lari, tetap sentuh garis.',hindari:'Berbalik dengan kaki lurus tanpa menyentuh garis.'},
+ {n:'Lutut Naik',kat:'Pemanasan',w:'#2EC5FF',L:.8,pose:t=>kf([[0,LN1],[.4,LN2]],.8,t),dy:t=>-6*Math.abs(Math.sin(t/.4*Math.PI)),
+  poin:['Angkat lutut bergantian setinggi pinggang.','Badan tegak, pandangan ke depan.','Tangan berayun seperti berlari.','Mendarat dengan ujung telapak kaki.'],mudah:'Jalan di tempat dengan lutut naik pelan.',sulit:'Percepat irama.',hindari:'Badan membungkuk ke belakang.'},
+ {n:'Lunge Berjalan',kat:'Pemanasan',w:'#2EC5FF',L:2.6,pose:t=>kf([[0,ST],[.9,LG],[1.5,LG],[2.2,ST]],2.6,t),panduan:'lunge',
+  poin:['Tangan di pinggang, badan tegak.','Langkahkan satu kaki jauh ke depan.','Turunkan badan sampai lutut depan membentuk sudut siku.','Lutut belakang mendekati lantai, lalu berdiri dan ganti kaki.'],mudah:'Langkah lebih pendek, turun sedikit.',sulit:'Tahan 2 detik di posisi bawah.',hindari:'Lutut depan maju melewati ujung jari kaki.'},
+ {n:'Peregangan Paha Depan',kat:'Pendinginan',w:'#7A5CD6',L:4,pose:t=>kf([[0,ST],[.9,PH],[3.2,PH]],4,t),dy:t=>Math.sin(t*1.6)*1.5,
+  poin:['Berdiri dengan satu kaki, boleh berpegangan pada teman.','Tekuk kaki lain ke belakang, pegang punggung kaki.','Tarik pelan sampai paha depan terasa meregang.','Tahan sekitar 15 detik sambil bernapas, lalu ganti kaki.'],mudah:'Berpegangan pada dinding atau teman.',sulit:'Tanpa pegangan, tahan keseimbangan.',hindari:'Menarik terlalu keras sampai sakit.'}];
+const lerp2=(a,b,k)=>a+(b-a)*halus(Math.max(0,Math.min(1,k)));
+let gIdx=2,gKec=1,gT=0,gJalan=true,gLalu=performance.now();
+GERAK.forEach((g,i)=>{const b=document.createElement('button');b.type='button';b.dataset.g=i;b.innerHTML=`<i style="background:${g.w}">${g.kat}</i>${g.n}`;b.onclick=()=>pilihGerak(i);$('#gerakPilih').appendChild(b);});
+function pilihGerak(i){gIdx=i;gT=0;const g=GERAK[i];document.querySelectorAll('#gerakPilih button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.g===i?'true':'false'));
+  $('#gerakInfo').innerHTML=`<span class="chip" style="background:${g.w};color:#fff">${g.kat}</span><h3>${g.n}</h3><ol>${g.poin.map(p=>`<li>${p}</li>`).join('')}</ol>
+   <div class="kotak3"><div><b style="color:var(--tosca)">Lebih mudah</b>${g.mudah}</div><div><b style="color:var(--biru)">Lebih menantang</b>${g.sulit}</div><div><b style="color:var(--koral)">Hindari</b>${g.hindari}</div></div>
+   <p class="kecil" style="margin:0">Tidak bisa bicara saat bergerak? Turunkan level. Pusing, mual, atau nyeri dada? Berhenti dan lapor guru.</p>`;}
+$('#gkPutar').onclick=()=>{gJalan=!gJalan;$('#gkPutar').textContent=gJalan?'Jeda':'Putar';};
+document.querySelectorAll('#v-gerakan .pilih button').forEach(b=>b.onclick=()=>{gKec=+b.dataset.v;document.querySelectorAll('#v-gerakan .pilih button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));});
+function tungkai(c,a,b,w,col){c.strokeStyle='#2B1A3F';c.lineWidth=w+6;c.beginPath();c.moveTo(...a);c.lineTo(...b);c.stroke();c.strokeStyle=col;c.lineWidth=w;c.beginPath();c.moveTo(...a);c.lineTo(...b);c.stroke();}
+function tokohGerak(c,p,depan){c.lineCap='round';c.lineJoin='round';
+  const KAOS=['#6BE6C8','#19B894'],CEL=['#6F82BA','#45558C'],KUL=['#FFD3AE','#E8A274'],a=depan?0:1;
+  const lengan=(e,t,d)=>{tungkai(c,p.n,e,14,KAOS[d]);tungkai(c,e,t,11,KUL[d]);c.fillStyle=KUL[d];c.strokeStyle='#2B1A3F';c.lineWidth=3;c.beginPath();c.arc(t[0],t[1],8,0,7);c.fill();c.stroke();};
+  const kaki=(k,f,d)=>{tungkai(c,p.hip,k,17,CEL[d]);tungkai(c,k,f,14,CEL[d]);const arah=depan?0:(f[0]>=k[0]-40?1:1);c.fillStyle=d?'#BFEFFF':'#FFFFFF';c.strokeStyle='#2B1A3F';c.lineWidth=3;c.beginPath();c.ellipse(f[0]+(depan?0:10),f[1]+2,depan?12:18,8,0,0,7);c.fill();c.stroke();};
+  // belakang: lengan & kaki jauh (lebih gelap) — tampak depan: sama terang
+  lengan(p.eJ,p.tJ,a);kaki(p.kJ,p.fJ,a);
+  tungkai(c,p.hip,p.n,32,KAOS[0]);c.strokeStyle='rgba(255,255,255,.75)';c.lineWidth=5;c.beginPath();const mx=(p.hip[0]+p.n[0])/2,my=(p.hip[1]+p.n[1])/2;c.moveTo(mx-10,my-8);c.lineTo(mx+10,my+8);c.stroke();
+  kaki(p.kD,p.fD,0);lengan(p.eD,p.tD,0);
+  // kepala
+  const hx=p.h[0],hy=p.h[1];tungkai(c,p.n,[hx,hy],12,KUL[0]);c.fillStyle=KUL[0];c.strokeStyle='#2B1A3F';c.lineWidth=4;c.beginPath();c.arc(hx,hy,25,0,7);c.fill();c.stroke();
+  c.fillStyle='#382A35';c.beginPath();c.arc(hx,hy-4,26,Math.PI*1.02,Math.PI*1.98);c.lineTo(hx+20,hy-14);c.lineTo(hx-20,hy-14);c.closePath();c.fill();
+  c.fillStyle='#2B1A3F';if(depan){c.beginPath();c.arc(hx-8,hy+4,3.5,0,7);c.arc(hx+8,hy+4,3.5,0,7);c.fill();}else{c.beginPath();c.arc(hx+13,hy+2,3.5,0,7);c.fill();}}
+function propGerak(c,g,t,dx){c.save();if(g.prop==='cone')for(let i=0;i<5;i++){const x=90+i*115;c.fillStyle='#FF7A1F';c.strokeStyle='#2B1A3F';c.lineWidth=3;c.beginPath();c.moveTo(x-16,398);c.lineTo(x-5,350);c.lineTo(x+5,350);c.lineTo(x+16,398);c.closePath();c.fill();c.stroke();c.fillStyle='#fff';c.fillRect(x-9,368,18,7);}
+  if(g.prop==='kotak'){const geser=-(t%1.2)/1.2*180;for(let i=-1;i<5;i++){const x=110+i*90+geser*.5;c.strokeStyle='#2B1A3F';c.lineWidth=3;c.fillStyle=i%2?'#FFF3C4':'#E6FFF6';c.beginPath();c.rect(x,398,90,26);c.fill();c.stroke();}}
+  if(g.prop==='garis'){c.fillStyle='#2B1A3F';c.fillRect(90,330,8,70);c.fillRect(492,330,8,70);c.font="900 18px Nunito, sans-serif";c.textAlign='center';c.fillText('5 meter',295,330);c.strokeStyle='#2B1A3F';c.lineWidth=3;c.beginPath();c.moveTo(110,342);c.lineTo(480,342);c.stroke();}
+  c.restore();}
+function panduanGerak(c,g,p){if(!$('#gkPanduan').checked)return;c.save();c.setLineDash([10,8]);c.lineWidth=3;c.strokeStyle='#E8323F';c.font="900 17px Nunito, sans-serif";c.fillStyle='#E8323F';
+  if(g.panduan==='squat'){c.beginPath();c.moveTo(p.hip[0],p.hip[1]);c.lineTo(p.h[0],p.h[1]);c.stroke();const toe=p.fD[0]+28;c.beginPath();c.moveTo(toe,300);c.lineTo(toe,400);c.stroke();c.fillText('batas lutut',toe+8,306);c.fillText('punggung lurus',p.h[0]+30,p.h[1]-34);}
+  if(g.panduan==='plank'){c.beginPath();c.moveTo(p.kD[0]-20,p.kD[1]+12);c.lineTo(p.h[0]+30,p.h[1]-24);c.stroke();c.fillText('lurus kepala sampai lutut',p.h[0]-110,p.h[1]-46);}
+  if(g.panduan==='lunge'&&p.hip[1]>285){c.beginPath();c.moveTo(p.kD[0],p.kD[1]);c.lineTo(p.kD[0],p.kD[1]-60);c.moveTo(p.kD[0],p.kD[1]);c.lineTo(p.kD[0]-60,p.kD[1]);c.stroke();c.fillText('sudut siku',p.kD[0]+10,p.kD[1]-40);}
+  c.restore();}
+function gambarGerak(now){const dt=Math.min(.05,(now-gLalu)/1000);gLalu=now;if(gJalan&&!$('#v-gerakan').hidden)gT+=dt*gKec;
+  if(!$('#v-gerakan').hidden){const c=GK,g=GERAK[gIdx],t=gT;c.setTransform(1,0,0,1,0,0);c.fillStyle='#F7FBFF';c.fillRect(0,0,640,440);
+    c.fillStyle='#DDF3E6';c.fillRect(0,398,640,42);c.strokeStyle='#2B1A3F';c.lineWidth=4;c.beginPath();c.moveTo(0,398);c.lineTo(640,398);c.stroke();
+    propGerak(c,g,t);const dx=g.dx?g.dx(t):0,dy=g.dy?g.dy(t):0,sk=g.skala?g.skala(t):1,p=g.pose(t);
+    c.fillStyle='rgba(43,26,63,.15)';c.beginPath();c.ellipse(300+dx+20,402,60*(1+dy/120),8,0,0,7);c.fill();
+    c.save();c.translate(300+dx,398);if(g.balik&&g.balik(t))c.scale(-1,1);c.scale(sk,sk);c.translate(-300,-398+dy);
+    if(g.prop==='tali'){const th=t/.6*2*Math.PI,cy=250+175*Math.cos(th),dep=Math.cos(th)>0;c.strokeStyle='#E8323F';c.lineWidth=5;if(!dep){c.beginPath();c.moveTo(...p.tD);c.quadraticCurveTo(300,cy,p.tJ[0],p.tJ[1]);c.stroke();}
+      tokohGerak(c,p,g.depan);if(dep){c.beginPath();c.moveTo(...p.tD);c.quadraticCurveTo(300,cy-dy,p.tJ[0],p.tJ[1]);c.stroke();}}
+    else tokohGerak(c,p,g.depan);
+    panduanGerak(c,g,p);c.restore();
+    c.font="400 26px 'Luckiest Guy', sans-serif";c.fillStyle='#2B1A3F';c.textAlign='left';c.fillText(g.n.toUpperCase(),20,40);
+    if(gKec<1){c.font="900 16px Nunito, sans-serif";c.fillText('gerak lambat',22,64);}}
+  if(!gerakPelan)requestAnimationFrame(gambarGerak);}
+pilihGerak(2);requestAnimationFrame(gambarGerak);
+if(gerakPelan){gT=1.2;gambarGerak(performance.now());}
 
 /* ---------- AKSI KELAS ---------- */
 let AC=null;
