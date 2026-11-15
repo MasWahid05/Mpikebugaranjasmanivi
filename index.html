@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Media interaktif PJOK Kelas 6 SD Jaya Manggala: tujuan pembelajaran, materi denyut nadi dan algoritma gerak, kuis, dan Lacak Bug.">
+<style>:root{color-scheme:light}html,body{margin:0}body{font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style><title>Energi Super Kelas 6</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@600;800;900&display=swap">
+<style>
+/* Tata letak: pita kepala bergaris detak jantung -> tab 4 misi -> satu panel per misi, kartu berbingkai tinta tebal ala kartun cel */
+:root{
+  --langit:#E9F6FF; --kertas:#FFFFFF; --tinta:#2B1A3F; --teks:#2B1A3F; --redup:#5A4E6E;
+  --koral:#FF4F64; --tosca:#19B894; --kode:#0FA883; --biru:#2EC5FF; --kuning:#FFC233; --ungu:#7A5CD6;
+  --garis:#2B1A3F; --lembut:#F3F7FC; --kodeBg:#1E2A44; --kodeTeks:#FFFFFF; --hijauTerang:#7CF0C8;
+  --display:'Luckiest Guy','Arial Black',Impact,sans-serif; --body:'Nunito','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--langit:#141A2E;--kertas:#1F2742;--teks:#F4F1FF;--redup:#B9B2D3;--garis:#0B0716;--lembut:#273152;--tinta:#0B0716;color-scheme:dark}}
+:root[data-theme="dark"]{--langit:#141A2E;--kertas:#1F2742;--teks:#F4F1FF;--redup:#B9B2D3;--garis:#0B0716;--lembut:#273152;--tinta:#0B0716;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--langit);color:var(--teks);font-family:var(--body);font-size:17px;line-height:1.5;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wadah{max-width:1080px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.02em;text-wrap:balance;margin:0}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--biru);outline-offset:3px}
+.kepala{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding-block:28px 18px}
+.sekolah{font-weight:900;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--tosca)}
+.kepala h1{font-size:clamp(40px,7vw,72px);line-height:.95;color:var(--koral);-webkit-text-stroke:2px var(--tinta);paint-order:stroke fill;text-shadow:0 5px 0 var(--tinta)}
+.kepala h1 span{color:var(--tosca)}
+.kepala p{margin:10px 0 0;color:var(--redup);font-weight:800;max-width:52ch}
+.layar{width:min(300px,38vw);aspect-ratio:2/1;border:5px solid var(--garis);border-radius:20px;background:#22183A;box-shadow:6px 8px 0 var(--garis)}
+.tab{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 22px}
+.tab a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--teks);background:var(--kertas);border:4px solid var(--garis);border-radius:16px;padding:8px 16px 8px 8px;font-weight:900;box-shadow:4px 5px 0 var(--garis);transition:transform .15s}
+.tab a b{font-family:var(--display);font-weight:400;font-size:20px;color:#fff;background:var(--tosca);border-radius:10px;width:36px;height:36px;display:grid;place-items:center}
+.tab a[aria-current="page"]{background:var(--kuning);color:#2B1A3F;transform:translateY(-3px)}
+.tab a:hover{transform:translateY(-2px)}
+.kartu{background:var(--kertas);border:5px solid var(--garis);border-radius:24px;box-shadow:8px 10px 0 var(--garis);padding:24px;min-width:0}
+.pita{display:inline-block;font-family:var(--display);font-size:22px;color:#fff;background:var(--koral);border:4px solid var(--garis);border-radius:12px;padding:4px 14px 0;transform:rotate(-2deg);margin-bottom:12px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:22px}
+.tp{list-style:none;padding:0;margin:0;display:grid;gap:14px;counter-reset:tp}
+.tp li{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;background:var(--lembut);border-radius:16px;padding:14px;counter-increment:tp}
+.tp li::before{content:counter(tp);font-family:var(--display);font-size:28px;color:#fff;background:var(--koral);border:4px solid var(--garis);border-radius:14px;width:52px;height:52px;display:grid;place-items:center}
+.tp b{color:var(--tosca)}
+.chip{display:inline-block;font-weight:900;font-size:14px;padding:3px 12px;border-radius:999px;border:3px solid var(--garis);background:var(--kuning);color:#2B1A3F}
+.lkpd{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.materi{display:grid;gap:22px}
+.mat h3{font-size:28px;color:var(--koral);margin-bottom:6px}
+.mat p{margin:6px 0;max-width:65ch}
+.rantai{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
+.rantai div{background:var(--lembut);border:3px solid var(--garis);border-radius:14px;padding:10px 12px;font-weight:800}
+.rantai div b{display:block;font-family:var(--display);font-weight:400;font-size:20px;color:var(--tosca)}
+.sim{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:center}
+.sim canvas{width:100%;aspect-ratio:3/2;border:5px solid var(--garis);border-radius:18px;background:#22183A}
+.pilih{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.pilih button{border:4px solid var(--garis);border-radius:14px;background:var(--kertas);color:var(--teks);padding:8px 14px;font-weight:900;box-shadow:3px 4px 0 var(--garis)}
+.pilih button[aria-pressed="true"]{background:var(--koral);color:#fff}
+.bicara{font-weight:900;padding:10px 14px;border-radius:14px;background:var(--lembut)}
+.hitung{display:flex;flex-wrap:wrap;align-items:center;gap:12px;font-family:var(--display);font-size:28px;margin-top:10px}
+.hitung input{width:110px;font:inherit;font-size:28px;text-align:center;border:4px solid var(--garis);border-radius:14px;padding:4px;background:var(--kertas);color:var(--teks)}
+.hasil{color:var(--koral)}
+.catat{font-family:var(--body);font-size:15px;font-weight:800;color:var(--redup)}
+.kode{background:var(--kodeBg);color:var(--kodeTeks);border:5px solid var(--garis);border-radius:18px;padding:16px 18px;font-family:'Courier New',monospace;font-weight:700;font-size:16px;line-height:1.7;overflow-x:auto}
+.kode .k{color:var(--hijauTerang)} .kode .m{color:var(--kuning)}
+/* kuis */
+.soal{display:grid;gap:14px}
+.no{font-family:var(--display);font-size:20px;color:var(--tosca)}
+.tanya{font-size:22px;font-weight:900;margin:4px 0 6px}
+.opsi{display:grid;gap:10px}
+.opsi button{text-align:left;border:4px solid var(--garis);border-radius:16px;background:var(--kertas);color:var(--teks);padding:12px 16px;font-weight:800;display:flex;gap:12px;align-items:center}
+.opsi button span{flex:none;font-family:var(--display);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--lembut);border:3px solid var(--garis)}
+.opsi button.benar{background:#C8F5E5;color:#14382D}.opsi button.salah{background:#FFD3D9;color:#4A1420}
+.opsi button:disabled{cursor:default}
+.umpan{padding:12px 16px;border-radius:14px;background:var(--lembut);font-weight:800}
+.bar{height:16px;border:3px solid var(--garis);border-radius:999px;overflow:hidden;background:var(--lembut)}
+.bar i{display:block;height:100%;background:var(--tosca);transition:width .3s}
+.aksi{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tombol{border:4px solid var(--garis);border-radius:16px;background:var(--koral);color:#fff;padding:10px 20px;font-family:var(--display);font-size:22px;box-shadow:4px 5px 0 var(--garis)}
+.tombol.dua{background:var(--kertas);color:var(--teks)}
+.tombol:disabled{opacity:.5;cursor:default}
+.skor{font-family:var(--display);font-size:64px;color:var(--koral);line-height:1}
+/* lacak bug */
+.misi{display:flex;flex-wrap:wrap;gap:8px}
+.arena{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;align-items:start}
+.program{background:var(--kodeBg);border:5px solid var(--garis);border-radius:18px;padding:14px;display:grid;gap:8px;min-height:120px}
+.ujung{font-family:'Courier New',monospace;font-weight:700;color:var(--kuning);padding:2px 10px}
+.baris{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:#2C3A5C;color:#fff;border:3px solid #0B0716;border-radius:12px;padding:10px 12px;font-family:'Courier New',monospace;font-weight:700;font-size:15px;touch-action:none;user-select:none;-webkit-user-select:none}
+.baris::before{content:"⋮⋮";color:#9FB0D6;letter-spacing:-3px}
+.baris.bug{background:#5A1E33;border-color:var(--koral)}.baris.oke{background:#16493E;border-color:var(--hijauTerang)}
+.toples{border:5px dashed var(--garis);border-radius:28px;background:var(--lembut);padding:14px;min-height:260px;display:grid;align-content:start;gap:8px;transition:background .15s}
+.toples.atas{background:#FFE7EB}
+.toples h3{font-size:24px;color:var(--koral);display:flex;align-items:center;gap:10px}
+.toples .kosong{color:var(--redup);font-weight:800;font-size:15px}
+.hantu{position:fixed;left:0;top:0;pointer-events:none;z-index:50;opacity:.92;transform-origin:20px 20px;box-shadow:6px 8px 0 rgba(0,0,0,.35)}
+.penjelas{display:grid;gap:10px;margin-top:6px}
+.penjelas div{border:3px solid var(--garis);border-radius:14px;padding:10px 14px;background:var(--lembut);font-weight:800}
+.penjelas div b{color:var(--koral)} .penjelas div.ok b{color:var(--tosca)}
+.kecil{font-size:14px;color:var(--redup);font-weight:800}
+@media (max-width:720px){.kepala{grid-template-columns:1fr}.layar{width:100%}.sim,.arena{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+</head>
+<body>
+<div class="wadah">
+  <header class="kepala">
+    <div>
+      <div class="sekolah">SD Jaya Manggala · PJOK Kelas 6 · Fase C</div>
+      <h1>Energi <span>Super</span></h1>
+      <p>Algoritma gerak untuk jantung sehat. Pelajari tujuanmu, baca materinya, kerjakan kuis, lalu tangkap bug di kartu program.</p>
+    </div>
+    <canvas class="layar" id="layarEkg" width="600" height="300" aria-label="Garis detak jantung bergerak"></canvas>
+  </header>
+
+  <nav class="tab" aria-label="Bagian">
+    <a href="#tujuan" data-ke="tujuan"><b>1</b>Tujuan</a>
+    <a href="#materi" data-ke="materi"><b>2</b>Materi</a>
+    <a href="#kuis" data-ke="kuis"><b>3</b>Kuis</a>
+    <a href="#lacak-bug" data-ke="lacak-bug"><b>4</b>Lacak Bug</a>
+  </nav>
+
+  <!-- 1. TUJUAN -->
+  <section id="v-tujuan" class="kartu">
+    <span class="pita">Tujuan Pembelajaran</span>
+    <ol class="tp">
+      <li><div>Mempraktikkan variasi gerak dalam <b>sirkuit 7 pos</b> dengan teknik yang benar dan aman.</div></li>
+      <li><div><b>Mengukur denyut nadi sendiri</b> dan menjelaskan perubahan denyut nadi, napas, dan suasana hati berdasarkan data yang kamu catat.</div></li>
+      <li><div><b>Menyusun algoritma sirkuit</b> yang memuat urutan, perulangan (ULANGI), dan aturan JIKA–MAKA, lalu menemukan dan memperbaiki bug.</div></li>
+      <li><div>Merancang <b>Jadwal Gerakku</b> selama satu minggu dengan aturan JIKA–MAKA supaya tidak kurang gerak.</div></li>
+    </ol>
+    <div class="lkpd"><span class="chip">LKPD 1 · Detektif Denyut Nadi</span><span class="chip" style="background:var(--hijauTerang)">LKPD 2 · Kartu Algoritma Kelompok</span><span class="chip" style="background:#CDBEFF">LKPD 3 · Jadwal Gerakku</span></div>
+  </section>
+
+  <!-- 2. MATERI -->
+  <section id="v-materi" class="materi" hidden>
+    <div class="kartu mat">
+      <span class="pita">Materi 1</span>
+      <h3>Saat kamu bergerak</h3>
+      <p>Otot membutuhkan lebih banyak oksigen. Paru-paru bernapas lebih cepat, dan jantung memompa darah lebih kencang. Kalau rutin bergerak, jantung dan paru-paru menjadi lebih kuat, dan suasana hatimu ikut membaik.</p>
+      <div class="rantai"><div><b>Otot</b>butuh oksigen</div><div><b>Paru-paru</b>bernapas lebih cepat</div><div><b>Jantung</b>memompa lebih kencang</div><div><b>Tubuh</b>dapat energi</div></div>
+    </div>
+    <div class="kartu mat">
+      <span class="pita" style="background:var(--tosca)">Materi 2</span>
+      <h3>Detektif denyut nadi</h3>
+      <div class="sim">
+        <div>
+          <p>Letakkan <b>jari telunjuk dan jari tengah</b> di pergelangan tangan, di sisi ibu jari. Jangan memakai ibu jari. Hitung denyutnya selama <b>15 detik</b>, lalu <b>kalikan 4</b>.</p>
+          <div class="hitung"><label for="h15" class="catat">Hitunganku (15 detik)</label><input id="h15" type="number" min="0" max="60" value="20" inputmode="numeric"> × 4 = <span class="hasil" id="hasilNadi">80</span></div>
+          <p class="catat" id="ketNadi">kali per menit. Denyut nadi istirahat anak umumnya sekitar 70–110 kali per menit. Catat di LKPD 1.</p>
+        </div>
+        <div>
+          <canvas id="simJantung" width="600" height="400" aria-label="Jantung berdenyut sesuai kegiatan yang dipilih"></canvas>
+          <div class="pilih" role="group" aria-label="Pilih kegiatan">
+            <button type="button" data-g="0" aria-pressed="true">Istirahat</button>
+            <button type="button" data-g="1" aria-pressed="false">Jalan</button>
+            <button type="button" data-g="2" aria-pressed="false">Jogging</button>
+            <button type="button" data-g="3" aria-pressed="false">Lari zig-zag</button>
+          </div>
+          <div class="bicara" id="ujiBicara">Uji bicara: santai, masih bisa bernyanyi.</div>
+        </div>
+      </div>
+      <p><b>Polanya:</b> makin berat gerakan, makin cepat denyut nadi dan napasmu. Intensitas sedang artinya kamu masih bisa bicara, tetapi tidak bisa bernyanyi.</p>
+    </div>
+    <div class="kartu mat">
+      <span class="pita" style="background:var(--ungu)">Materi 3</span>
+      <h3>Algoritma gerak</h3>
+      <p><b>Algoritma</b> adalah urutan langkah yang jelas. Perintah <b>ULANGI</b> mengulang langkah tanpa menulisnya lagi. Aturan <b>JIKA–MAKA</b> memilih tindakan sesuai kondisi. <b>Bug</b> adalah kesalahan dalam program, dan <b>debugging</b> berarti menemukan dan memperbaikinya.</p>
+      <div class="kode" role="region" aria-label="Contoh kartu algoritma" tabindex="0">
+<span class="m">MULAI</span><br>1. <span class="k">PEMANASAN</span>: jalan 1 menit, ayun lengan 10 kali<br>2. <span class="k">UNTUK SETIAP POS</span> (1 sampai 7):<br>&nbsp;&nbsp;&nbsp;<span class="k">ULANGI 2 KALI</span>:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. Gerakan pos, cepat, 25 detik<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. Jalan di tempat 10 detik<br>&nbsp;&nbsp;&nbsp;<span class="k">JIKA</span> tidak bisa bicara <span class="k">MAKA</span> jalan pelan 30 detik<br>&nbsp;&nbsp;&nbsp;Pindah ke pos berikutnya (10 detik)<br>3. Ukur denyut nadi<br>4. <span class="k">PENDINGINAN</span>: jalan santai dan peregangan<br><span class="m">SELESAI</span>
+      </div>
+    </div>
+    <div class="kartu mat">
+      <span class="pita" style="background:var(--kuning);color:#2B1A3F">Materi 4</span>
+      <h3>Jadwal Gerakku</h3>
+      <p>Anak dianjurkan bergerak rata-rata minimal <b>60 menit setiap hari</b> dengan aktivitas sedang sampai berat, dan membatasi waktu duduk serta main HP. Tulis rencanamu seminggu di LKPD 3 dengan minimal tiga aturan, misalnya:</p>
+      <div class="kode" tabindex="0" role="region" aria-label="Contoh aturan JIKA-MAKA"><span class="k">JIKA</span> hujan <span class="k">MAKA</span> senam di teras 15 menit<br><span class="k">JIKA</span> sudah main HP 30 menit <span class="k">MAKA</span> lakukan 20 jumping jack<br><span class="k">JIKA</span> hari Minggu <span class="k">MAKA</span> bersepeda bersama keluarga 30 menit</div>
+      <p class="kecil">Sumber anjuran 60 menit: WHO (2020), Guidelines on Physical Activity and Sedentary Behaviour.</p>
+    </div>
+  </section>
+
+  <!-- 3. KUIS -->
+  <section id="v-kuis" class="kartu" hidden>
+    <span class="pita">Kuis Energi Super</span>
+    <div class="aksi" style="justify-content:space-between;margin-bottom:12px"><span class="no" id="noSoal">Soal 1 dari 10</span><span class="kecil" id="skorSementara">Skor 0</span></div>
+    <div class="bar" aria-hidden="true"><i id="barKuis" style="width:0%"></i></div>
+    <div class="soal" id="kotakSoal" style="margin-top:16px"></div>
+  </section>
+
+  <!-- 4. LACAK BUG -->
+  <section id="v-lacak-bug" class="kartu" hidden>
+    <span class="pita">Lacak Bug</span>
+    <p style="margin-top:0;max-width:65ch">Kartu program di bawah berisi bug. <b>Seret baris yang salah ke Toples Bug</b>, lalu tekan Periksa. Kalau sulit menyeret, ketuk saja barisnya untuk memindahkannya.</p>
+    <div class="misi" role="group" aria-label="Pilih kartu" id="pilihMisi"></div>
+    <div class="arena" style="margin-top:16px">
+      <div>
+        <div class="program" id="program" aria-label="Kartu program"></div>
+      </div>
+      <div class="toples" id="toples" aria-label="Toples Bug">
+        <h3><svg width="36" height="36" viewBox="-40 -48 80 90" aria-hidden="true"><g stroke="#2B1A3F" stroke-width="5" fill="none"><path d="M-18-10l-16-6M-18 4l-18 0M-18 18l-16 6M18-10l16-6M18 4l18 0M18 18l16 6M-8-26l-8-16M8-26l8-16"/></g><ellipse cx="0" cy="4" rx="24" ry="30" fill="#FF4F64" stroke="#2B1A3F" stroke-width="5"/><ellipse cx="0" cy="-24" rx="15" ry="12" fill="#382A35" stroke="#2B1A3F" stroke-width="5"/><path d="M0-14V34" stroke="#2B1A3F" stroke-width="4"/></svg>Toples Bug</h3>
+        <div class="kosong" id="toplesKosong">Seret baris yang berisi bug ke sini.</div>
+      </div>
+    </div>
+    <div class="aksi" style="margin-top:18px"><button class="tombol" id="periksa" type="button">Periksa</button><button class="tombol dua" id="ulangBug" type="button">Ulangi kartu</button><span class="kecil" id="infoBug"></span></div>
+    <div class="penjelas" id="penjelas"></div>
+  </section>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const simpan=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const ambil=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}};
+const gerakPelan=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- navigasi tab (hash) ---------- */
+const VIEW=['tujuan','materi','kuis','lacak-bug'];
+function tampil(){const h=location.hash.slice(1),v=VIEW.includes(h)?h:'tujuan';
+  VIEW.forEach(n=>{$('#v-'+n).hidden=n!==v;});
+  document.querySelectorAll('.tab a').forEach(a=>a.setAttribute('aria-current',a.dataset.ke===v?'page':'false'));}
+addEventListener('hashchange',tampil);tampil();
+
+/* ---------- EKG kepala + jantung simulasi (canvas) ---------- */
+function gambarJantung(c,x,y,s,fase){const p=1+.16*Math.exp(-fase*9);c.save();c.translate(x,y);c.scale(s*p,s*p);c.beginPath();
+  for(let i=0;i<=40;i++){const a=i/40*2*Math.PI,xx=16*Math.sin(a)**3,yy=-(13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a));i?c.lineTo(xx*5,yy*5):c.moveTo(xx*5,yy*5);}
+  c.closePath();c.fillStyle='#FF4F64';c.fill();c.lineWidth=6/s;c.strokeStyle='#0B0716';c.stroke();c.fillStyle='rgba(255,255,255,.7)';c.beginPath();c.ellipse(-34,-30,14,22,-.5,0,7);c.fill();c.restore();}
+function nilaiEkg(f){if(f<.06)return -Math.sin(f/.06*Math.PI)*.12;if(f>.1&&f<.13)return .18;if(f>=.13&&f<.17)return -1;if(f>=.17&&f<.21)return .35;if(f>.3&&f<.42)return -Math.sin((f-.3)/.12*Math.PI)*.22;return 0;}
+function ekg(c,w,h,t,bpm,x0=0,lebar=w){c.strokeStyle='rgba(255,255,255,.1)';c.lineWidth=2;for(let gx=x0;gx<x0+lebar;gx+=30){c.beginPath();c.moveTo(gx,0);c.lineTo(gx,h);c.stroke();}
+  const per=60/bpm;c.strokeStyle='#FF4F64';c.lineWidth=6;c.lineJoin='round';c.shadowColor='#FF4F64';c.shadowBlur=14;c.beginPath();
+  for(let px=0;px<=lebar;px+=3){const tt=t-(lebar-px)/260,f=((tt%per)+per)%per/per,y=h*.55+nilaiEkg(f)*h*.38;px?c.lineTo(x0+px,y):c.moveTo(x0+px,y);}c.stroke();c.shadowBlur=0;}
+const L1=$('#layarEkg').getContext('2d'),L2=$('#simJantung').getContext('2d');
+const GIAT=[{n:'Istirahat',bpm:75,uji:'Uji bicara: santai, masih bisa bernyanyi.'},{n:'Jalan',bpm:95,uji:'Uji bicara: masih bisa bernyanyi, napas mulai naik.'},
+  {n:'Jogging',bpm:125,uji:'Uji bicara: masih bisa bicara, tetapi tidak bisa bernyanyi. Ini intensitas sedang.'},{n:'Lari zig-zag',bpm:160,uji:'Uji bicara: hanya bisa mengucapkan beberapa kata. Ini intensitas berat.'}];
+let giat=0,bpmNow=75;
+document.querySelectorAll('.pilih button').forEach(b=>b.addEventListener('click',()=>{giat=+b.dataset.g;document.querySelectorAll('.pilih button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));$('#ujiBicara').textContent=GIAT[giat].uji;}));
+let fase1=0,fase2=0,tLama=performance.now();
+function putar(now){const dt=Math.min(.05,(now-tLama)/1000);tLama=now;const t=now/1000;
+  bpmNow+=(GIAT[giat].bpm-bpmNow)*Math.min(1,dt*1.5);fase1=(fase1+dt*110/60)%1;fase2=(fase2+dt*bpmNow/60)%1;
+  L1.clearRect(0,0,600,300);ekg(L1,600,300,t,110,0,470);gambarJantung(L1,530,150,.55,fase1);
+  L2.clearRect(0,0,600,400);ekg(L2,600,400,t,bpmNow,0,600);gambarJantung(L2,300,190,1.15,fase2);
+  L2.font="400 34px 'Luckiest Guy', sans-serif";L2.fillStyle='#FFFFFF';L2.textAlign='center';L2.fillText(GIAT[giat].n.toUpperCase(),300,370);
+  const kec=['PELAN','SEDANG','CEPAT','SANGAT CEPAT'][giat];L2.font="900 22px Nunito, sans-serif";L2.fillStyle='#FFC233';L2.fillText('Denyut: '+kec,300,40);
+  if(!gerakPelan)requestAnimationFrame(putar);}
+requestAnimationFrame(putar);
+// kalkulator nadi
+function hitungNadi(){const v=Math.max(0,Math.min(60,parseInt($('#h15').value,10)||0)),r=v*4;$('#hasilNadi').textContent=r;}
+$('#h15').addEventListener('input',hitungNadi);hitungNadi();
+
+/* ---------- KUIS ---------- */
+const SOAL=[
+ {q:'Bagaimana cara mengukur denyut nadi yang benar?',o:['Ibu jari di pergelangan tangan, hitung 1 menit','Jari telunjuk dan jari tengah di pergelangan sisi ibu jari, hitung 15 detik lalu kali 4','Telapak tangan di dada, hitung 10 detik','Dua jari di siku, hitung 15 detik lalu kali 2'],b:1,e:'Pakai telunjuk dan jari tengah, jangan ibu jari. Hitung 15 detik, lalu kalikan 4.'},
+ {q:'Dalam 15 detik kamu menghitung 25 denyut. Berapa denyut nadimu per menit?',o:['75','90','100','125'],b:2,e:'25 × 4 = 100 kali per menit.'},
+ {q:'Mengapa denyut nadi naik saat kita berlari?',o:['Karena kita kepanasan','Otot butuh lebih banyak oksigen, jadi jantung memompa darah lebih cepat','Karena sepatu terlalu berat','Karena paru-paru berhenti bekerja'],b:1,e:'Otot butuh oksigen. Paru-paru bernapas lebih cepat dan jantung memompa lebih kencang.'},
+ {q:'Pola apa yang kita temukan dari jalan, jogging, dan lari zig-zag?',o:['Makin berat gerakan, makin cepat denyut nadi dan napas','Makin berat gerakan, makin lambat denyut nadi','Denyut nadi selalu sama','Napas berhenti saat berlari'],b:0,e:'Makin berat gerakan, makin cepat denyut nadi dan napasmu.'},
+ {q:'Menurut uji bicara, intensitas sedang artinya...',o:['Masih bisa bernyanyi','Masih bisa bicara, tetapi tidak bisa bernyanyi','Tidak bisa bicara sama sekali','Sedang duduk santai'],b:1,e:'Intensitas sedang: masih bisa bicara, tetapi tidak bisa bernyanyi.'},
+ {q:'Apa arti algoritma?',o:['Alat olahraga','Urutan langkah yang jelas','Nama pos sirkuit','Hitungan denyut nadi'],b:1,e:'Algoritma adalah urutan langkah yang jelas untuk menyelesaikan tugas.'},
+ {q:'Apa fungsi perintah ULANGI 2 KALI?',o:['Menghapus langkah','Mengulang langkah tanpa menulisnya lagi','Mengganti pos','Menghentikan program'],b:1,e:'ULANGI membuat langkah diulang tanpa ditulis berkali-kali.'},
+ {q:'Baris program mana yang berisi bug?',o:['PEMANASAN: jalan 1 menit','Squat 20 detik','Plank 5 menit','PENDINGINAN: peregangan 1 menit'],b:2,e:'Plank 5 menit terlalu lama dan tidak aman. Perbaikannya: plank lutut 20 detik.'},
+ {q:'Aturan JIKA–MAKA keselamatan yang tepat adalah...',o:['JIKA lelah MAKA lari lebih cepat','JIKA tidak bisa bicara MAKA jalan pelan 30 detik','JIKA haus MAKA terus berlari','JIKA pusing MAKA plank 5 menit'],b:1,e:'Kalau tidak bisa bicara, turunkan intensitas dengan jalan pelan.'},
+ {q:'Anak dianjurkan bergerak rata-rata minimal berapa lama setiap hari?',o:['10 menit','30 menit','60 menit','3 jam'],b:2,e:'Rata-rata minimal 60 menit aktivitas sedang sampai berat setiap hari.'}];
+let iSoal=0,skor=0;
+function soal(){const k=$('#kotakSoal');k.innerHTML='';$('#barKuis').style.width=(iSoal/SOAL.length*100)+'%';$('#skorSementara').textContent='Skor '+skor;
+  if(iSoal>=SOAL.length){const terbaik=Math.max(skor,ambil('es-kuis-terbaik',0));simpan('es-kuis-terbaik',terbaik);$('#noSoal').textContent='Selesai!';
+    k.innerHTML=`<div class="skor">${skor} / ${SOAL.length}</div><p style="font-weight:900;font-size:20px;margin:0">${skor>=9?'Luar biasa! Kamu programmer kebugaran sejati.':skor>=7?'Bagus! Ulangi materi yang masih salah.':'Ayo baca lagi materinya, lalu coba sekali lagi.'}</p><p class="kecil">Skor terbaikmu di perangkat ini: ${terbaik}</p>`;
+    const b=document.createElement('button');b.className='tombol';b.type='button';b.textContent='Coba lagi';b.onclick=()=>{iSoal=0;skor=0;soal();};k.appendChild(b);return;}
+  const S=SOAL[iSoal];$('#noSoal').textContent=`Soal ${iSoal+1} dari ${SOAL.length}`;
+  const t=document.createElement('div');t.className='tanya';t.textContent=S.q;k.appendChild(t);
+  const op=document.createElement('div');op.className='opsi';k.appendChild(op);const um=document.createElement('div');
+  S.o.forEach((o,i)=>{const b=document.createElement('button');b.type='button';b.innerHTML=`<span>${'ABCD'[i]}</span>`;b.append(o);op.appendChild(b);
+    b.onclick=()=>{const benar=i===S.b;if(benar)skor++;op.querySelectorAll('button').forEach((x,j)=>{x.disabled=true;if(j===S.b)x.classList.add('benar');else if(j===i)x.classList.add('salah');});
+      um.className='umpan';um.innerHTML=`<b style="color:${benar?'var(--tosca)':'var(--koral)'}">${benar?'Benar!':'Belum tepat.'}</b> ${S.e}`;k.appendChild(um);
+      const lj=document.createElement('button');lj.className='tombol';lj.type='button';lj.textContent=iSoal===SOAL.length-1?'Lihat skor':'Soal berikutnya';lj.onclick=()=>{iSoal++;soal();};
+      const ak=document.createElement('div');ak.className='aksi';ak.appendChild(lj);k.appendChild(ak);$('#skorSementara').textContent='Skor '+skor;lj.focus();};});}
+soal();
+
+/* ---------- LACAK BUG: seret (pointer) atau ketuk ---------- */
+const MISI=[
+ {n:'Kartu 1',b:[['PEMANASAN: jalan 1 menit',0],['ULANGI KALI: squat 20 detik',1,'ULANGI tanpa jumlah.','ULANGI 2 KALI: squat 20 detik'],['Lompat tali 30 detik',0],['Plank 5 menit',1,'Terlalu lama dan tidak aman.','Plank lutut 20 detik'],['PENDINGINAN: jalan santai 1 menit',0]]},
+ {n:'Kartu 2',b:[['PEMANASAN: lari cepat 2 menit',1,'Pemanasan harus ringan.','PEMANASAN: jalan 1 menit, ayun lengan 10 kali'],['ULANGI 2 KALI: engklek 20 detik',0],['Jumping jack',1,'Tidak ada durasi atau jumlah.','Jumping jack 30 detik'],['JIKA tidak bisa bicara MAKA jalan pelan 30 detik',0],['PENDINGINAN: peregangan 1 menit',0]]},
+ {n:'Kartu 3',b:[['PENDINGINAN: peregangan 1 menit',1,'Pendinginan ada di awal. Seharusnya di akhir program.','Pindahkan ke akhir, sebelum SELESAI'],['PEMANASAN: jalan 1 menit, ayun lengan 10 kali',0],['ULANGI 100 KALI: lari zig-zag 30 detik',1,'Ulangannya terlalu banyak (sekitar 50 menit).','ULANGI 3 KALI: lari zig-zag 30 detik'],['Ukur denyut nadi sambil berlari',1,'Denyut nadi diukur saat berhenti, bukan sambil berlari.','Berhenti, lalu ukur denyut nadi'],['JIKA pusing MAKA berhenti dan lapor guru',0]]}];
+let mIdx=0,diToples=new Set(),sudahPeriksa=false;
+const pm=$('#pilihMisi');MISI.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.className='tombol dua';b.style.fontSize='18px';b.textContent=m.n;b.dataset.m=i;b.onclick=()=>{mIdx=i;mulaiMisi();};pm.appendChild(b);});
+function mulaiMisi(){diToples=new Set();sudahPeriksa=false;$('#penjelas').innerHTML='';$('#infoBug').textContent='';
+  pm.querySelectorAll('button').forEach(b=>{const on=+b.dataset.m===mIdx;b.style.background=on?'var(--kuning)':'';b.style.color=on?'#2B1A3F':'';b.setAttribute('aria-pressed',on);});gambarMisi();}
+function barisEl(i){const [teks]=MISI[mIdx].b[i];const b=document.createElement('button');b.type='button';b.className='baris';b.dataset.i=i;b.textContent=teks;
+  b.setAttribute('aria-label',(diToples.has(i)?'Di toples: ':'Di program: ')+teks+'. Ketuk untuk memindahkan.');
+  if(sudahPeriksa){const bug=MISI[mIdx].b[i][1];if(diToples.has(i))b.classList.add(bug?'bug':'oke');}
+  pasangSeret(b,i);return b;}
+function gambarMisi(){const pr=$('#program'),tp=$('#toples');pr.innerHTML='<div class="ujung">MULAI</div>';
+  MISI[mIdx].b.forEach((_,i)=>{if(!diToples.has(i))pr.appendChild(barisEl(i));});pr.insertAdjacentHTML('beforeend','<div class="ujung">SELESAI</div>');
+  tp.querySelectorAll('.baris').forEach(e=>e.remove());[...diToples].sort().forEach(i=>tp.appendChild(barisEl(i)));$('#toplesKosong').hidden=diToples.size>0;}
+function pindah(i){if(sudahPeriksa){sudahPeriksa=false;$('#penjelas').innerHTML='';$('#infoBug').textContent='';}diToples.has(i)?diToples.delete(i):diToples.add(i);gambarMisi();}
+function pasangSeret(el,i){let mulai=null,hantu=null,geser=false;
+  el.addEventListener('pointerdown',e=>{if(e.button!==0)return;mulai={x:e.clientX,y:e.clientY};geser=false;el.setPointerCapture(e.pointerId);});
+  el.addEventListener('pointermove',e=>{if(!mulai)return;const dx=e.clientX-mulai.x,dy=e.clientY-mulai.y;
+    if(!geser&&Math.hypot(dx,dy)>8){geser=true;const r=el.getBoundingClientRect();hantu=el.cloneNode(true);hantu.classList.add('hantu');hantu.style.width=r.width+'px';document.body.appendChild(hantu);hantu._o={x:mulai.x-r.left,y:mulai.y-r.top};el.style.opacity='.3';}
+    if(geser){hantu.style.transform=`translate(${e.clientX-hantu._o.x}px,${e.clientY-hantu._o.y}px) rotate(-3deg)`;const tp=$('#toples').getBoundingClientRect();$('#toples').classList.toggle('atas',e.clientX>tp.left&&e.clientX<tp.right&&e.clientY>tp.top&&e.clientY<tp.bottom);}});
+  const akhir=e=>{if(!mulai)return;const g=geser;mulai=null;el.style.opacity='';if(hantu){hantu.remove();hantu=null;}$('#toples').classList.remove('atas');
+    if(!g){pindah(i);return;}
+    const tp=$('#toples').getBoundingClientRect(),diAtas=e.clientX>tp.left&&e.clientX<tp.right&&e.clientY>tp.top&&e.clientY<tp.bottom;
+    if(diAtas!==diToples.has(i))pindah(i);};
+  el.addEventListener('pointerup',akhir);el.addEventListener('pointercancel',e=>{mulai=null;el.style.opacity='';if(hantu){hantu.remove();hantu=null;}});
+  el.addEventListener('click',e=>{if(e.detail===0)pindah(i);});}
+$('#periksa').onclick=()=>{sudahPeriksa=true;const B=MISI[mIdx].b,jml=B.filter(x=>x[1]).length;let kena=0,salah=0;const pj=$('#penjelas');pj.innerHTML='';
+  B.forEach((x,i)=>{if(diToples.has(i)&&x[1])kena++;if(diToples.has(i)&&!x[1])salah++;});
+  B.forEach((x,i)=>{if(x[1]&&diToples.has(i))pj.insertAdjacentHTML('beforeend',`<div><b>Bug tertangkap:</b> "${x[0]}". ${x[2]} Perbaikan: <b style="color:var(--tosca)">${x[3]}</b></div>`);
+    else if(!x[1]&&diToples.has(i))pj.insertAdjacentHTML('beforeend',`<div class="ok"><b>Bukan bug:</b> "${x[0]}" sudah benar. Kembalikan ke program.</div>`);});
+  const sisa=jml-kena;$('#infoBug').textContent=sisa===0&&salah===0?`Hebat! Semua ${jml} bug tertangkap.`:`${kena} dari ${jml} bug tertangkap${salah?`, ${salah} baris benar ikut masuk`:''}. ${sisa?'Masih ada bug yang lolos!':''}`;
+  if(sisa===0&&salah===0){const s=ambil('es-bug',{});s[mIdx]=1;simpan('es-bug',s);}gambarMisi();};
+$('#ulangBug').onclick=mulaiMisi;
+mulaiMisi();
+</script>
+
+</body>
+</html>
