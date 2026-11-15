@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Media interaktif PJOK Kelas 6 SD Jaya Manggala: tujuan pembelajaran, materi denyut nadi dan algoritma gerak, kuis, dan Lacak Bug.">
+<meta name="description" content="Media interaktif PJOK Kelas 6 SD Jaya Manggala: tujuan pembelajaran, video, materi denyut nadi dan algoritma gerak, kuis, dan Lacak Bug. Guru Pengampu: Syaifudin Wahid, M.Pd">
 <style>:root{color-scheme:light}html,body{margin:0}body{font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style><title>Energi Super Kelas 6</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@600;800;900&display=swap">
 <style>
@@ -27,6 +27,8 @@ button{font:inherit;cursor:pointer}
 .kepala h1{font-size:clamp(40px,7vw,72px);line-height:.95;color:var(--koral);-webkit-text-stroke:2px var(--tinta);paint-order:stroke fill;text-shadow:0 5px 0 var(--tinta)}
 .kepala h1 span{color:var(--tosca)}
 .kepala p{margin:10px 0 0;color:var(--redup);font-weight:800;max-width:52ch}
+.guru{display:inline-flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px;font-weight:900;font-size:18px;background:var(--kertas);border:4px solid var(--garis);border-radius:14px;padding:6px 14px 6px 6px;box-shadow:4px 5px 0 var(--garis)}
+.guru span{font-family:var(--display);font-weight:400;font-size:16px;letter-spacing:.04em;color:#fff;background:var(--tosca);border-radius:9px;padding:5px 10px 2px}
 .layar{width:min(300px,38vw);aspect-ratio:2/1;border:5px solid var(--garis);border-radius:20px;background:#22183A;box-shadow:6px 8px 0 var(--garis)}
 .tab{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 22px}
 .tab a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--teks);background:var(--kertas);border:4px solid var(--garis);border-radius:16px;padding:8px 16px 8px 8px;font-weight:900;box-shadow:4px 5px 0 var(--garis);transition:transform .15s}
@@ -78,7 +80,25 @@ button{font:inherit;cursor:pointer}
 .tombol:disabled{opacity:.5;cursor:default}
 .skor{font-family:var(--display);font-size:64px;color:var(--koral);line-height:1}
 /* lacak bug */
-.misi{display:flex;flex-wrap:wrap;gap:8px}
+/* video */
+.video-atas{display:grid;gap:4px;margin-bottom:14px}
+.judul-video{font-size:clamp(26px,4vw,36px);color:var(--koral)}
+.ket-video{margin:0;color:var(--redup);font-weight:800;max-width:65ch}
+.layar-video{position:relative;width:100%;max-width:100%;aspect-ratio:16/9;border:5px solid var(--garis);border-radius:20px;overflow:hidden;background:#22183A;box-shadow:6px 8px 0 var(--garis)}
+.layar-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.kosong-video{position:absolute;inset:0;display:grid;place-content:center;gap:10px;text-align:center;padding:20px;color:#fff;font-weight:800}
+.kosong-video b{font-family:var(--display);font-weight:400;font-size:clamp(24px,4vw,36px);color:var(--kuning)}
+.tautan{text-decoration:none;font-size:20px}
+.daftar-video{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;margin-top:20px}
+.daftar-video button{display:grid;gap:4px;text-align:left;border:4px solid var(--garis);border-radius:16px;background:var(--lembut);color:var(--teks);padding:12px 14px;font-weight:800;box-shadow:3px 4px 0 var(--garis)}
+.daftar-video button b{font-family:var(--display);font-weight:400;font-size:20px;color:var(--tosca)}
+.daftar-video button[aria-pressed="true"]{background:var(--kuning);color:#2B1A3F}
+.daftar-video button[aria-pressed="true"] b{color:#2B1A3F}
+.misi{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.grupLv{display:flex;flex-wrap:wrap;align-items:center;gap:6px;background:var(--lembut);border:3px solid var(--garis);border-radius:16px;padding:6px 8px}
+.lv{display:inline-block;font-weight:900;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#fff;border-radius:8px;padding:3px 8px}
+.kecilT{font-size:17px;padding:6px 12px;box-shadow:3px 4px 0 var(--garis);border-width:3px}
+.target{margin:14px 0 0;font-weight:800;font-size:18px}
 .arena{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;align-items:start}
 .program{background:var(--kodeBg);border:5px solid var(--garis);border-radius:18px;padding:14px;display:grid;gap:8px;min-height:120px}
 .ujung{font-family:'Courier New',monospace;font-weight:700;color:var(--kuning);padding:2px 10px}
@@ -106,15 +126,17 @@ button{font:inherit;cursor:pointer}
       <div class="sekolah">SD Jaya Manggala · PJOK Kelas 6 · Fase C</div>
       <h1>Energi <span>Super</span></h1>
       <p>Algoritma gerak untuk jantung sehat. Pelajari tujuanmu, baca materinya, kerjakan kuis, lalu tangkap bug di kartu program.</p>
+      <div class="guru"><span>Guru Pengampu</span>Syaifudin Wahid, M.Pd</div>
     </div>
     <canvas class="layar" id="layarEkg" width="600" height="300" aria-label="Garis detak jantung bergerak"></canvas>
   </header>
 
   <nav class="tab" aria-label="Bagian">
     <a href="#tujuan" data-ke="tujuan"><b>1</b>Tujuan</a>
-    <a href="#materi" data-ke="materi"><b>2</b>Materi</a>
-    <a href="#kuis" data-ke="kuis"><b>3</b>Kuis</a>
-    <a href="#lacak-bug" data-ke="lacak-bug"><b>4</b>Lacak Bug</a>
+    <a href="#video" data-ke="video"><b>2</b>Video</a>
+    <a href="#materi" data-ke="materi"><b>3</b>Materi</a>
+    <a href="#kuis" data-ke="kuis"><b>4</b>Kuis</a>
+    <a href="#lacak-bug" data-ke="lacak-bug"><b>5</b>Lacak Bug</a>
   </nav>
 
   <!-- 1. TUJUAN -->
@@ -127,6 +149,15 @@ button{font:inherit;cursor:pointer}
       <li><div>Merancang <b>Jadwal Gerakku</b> selama satu minggu dengan aturan JIKA–MAKA supaya tidak kurang gerak.</div></li>
     </ol>
     <div class="lkpd"><span class="chip">LKPD 1 · Detektif Denyut Nadi</span><span class="chip" style="background:var(--hijauTerang)">LKPD 2 · Kartu Algoritma Kelompok</span><span class="chip" style="background:#CDBEFF">LKPD 3 · Jadwal Gerakku</span></div>
+  </section>
+
+  <!-- VIDEO PEMBELAJARAN (daftar video diisi di file video.js) -->
+  <section id="v-video" class="kartu" hidden>
+    <span class="pita" style="background:var(--biru)">Video Pembelajaran</span>
+    <div class="video-atas"><h2 id="judulVideo" class="judul-video">Video pembelajaran</h2><p id="ketVideo" class="ket-video"></p></div>
+    <div class="layar-video" id="layarVideo"></div>
+    <div class="aksi" style="margin-top:16px"><a class="tombol dua tautan" id="bukaYoutube" href="#" target="_blank" rel="noopener" hidden>Buka di YouTube</a><a class="tombol" href="#kuis">Lanjut ke Kuis</a></div>
+    <div class="daftar-video" id="daftarVideo" aria-label="Daftar video"></div>
   </section>
 
   <!-- 2. MATERI -->
@@ -189,6 +220,7 @@ button{font:inherit;cursor:pointer}
     <span class="pita">Lacak Bug</span>
     <p style="margin-top:0;max-width:65ch">Kartu program di bawah berisi bug. <b>Seret baris yang salah ke Toples Bug</b>, lalu tekan Periksa. Kalau sulit menyeret, ketuk saja barisnya untuk memindahkannya.</p>
     <div class="misi" role="group" aria-label="Pilih kartu" id="pilihMisi"></div>
+    <p class="target" id="targetBug" aria-live="polite"></p>
     <div class="arena" style="margin-top:16px">
       <div>
         <div class="program" id="program" aria-label="Kartu program"></div>
@@ -198,11 +230,12 @@ button{font:inherit;cursor:pointer}
         <div class="kosong" id="toplesKosong">Seret baris yang berisi bug ke sini.</div>
       </div>
     </div>
-    <div class="aksi" style="margin-top:18px"><button class="tombol" id="periksa" type="button">Periksa</button><button class="tombol dua" id="ulangBug" type="button">Ulangi kartu</button><span class="kecil" id="infoBug"></span></div>
+    <div class="aksi" style="margin-top:18px"><button class="tombol" id="periksa" type="button">Periksa</button><button class="tombol dua" id="ulangBug" type="button">Ulangi kartu</button><button class="tombol dua" id="kartuLain" type="button">Kartu berikutnya</button><span class="kecil" id="infoBug"></span></div>
     <div class="penjelas" id="penjelas"></div>
   </section>
 </div>
 
+<script src="video.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 const simpan=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
@@ -210,11 +243,25 @@ const ambil=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d
 const gerakPelan=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- navigasi tab (hash) ---------- */
-const VIEW=['tujuan','materi','kuis','lacak-bug'];
+const VIEW=['tujuan','video','materi','kuis','lacak-bug'];
 function tampil(){const h=location.hash.slice(1),v=VIEW.includes(h)?h:'tujuan';
   VIEW.forEach(n=>{$('#v-'+n).hidden=n!==v;});
   document.querySelectorAll('.tab a').forEach(a=>a.setAttribute('aria-current',a.dataset.ke===v?'page':'false'));}
 addEventListener('hashchange',tampil);tampil();
+
+/* ---------- VIDEO PEMBELAJARAN: daftar dari video.js (window.VIDEO_PEMBELAJARAN) ---------- */
+function idYoutube(u){if(!u)return'';u=String(u).trim();if(/^[\w-]{11}$/.test(u))return u;
+  const m=u.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/|v\/))([\w-]{11})/);return m?m[1]:'';}
+const DAFTAR=(Array.isArray(window.VIDEO_PEMBELAJARAN)&&window.VIDEO_PEMBELAJARAN.length?window.VIDEO_PEMBELAJARAN:[{judul:'Energi Super: Algoritma Gerak untuk Jantung Sehat',ket:'Video pembelajaran bersama Kak Wahid.',link:''}]);
+let vAktif=0;
+function putarVideo(i){vAktif=i;const v=DAFTAR[i],id=idYoutube(v.link),L=$('#layarVideo');$('#judulVideo').textContent=v.judul||'Video pembelajaran';$('#ketVideo').textContent=v.ket||'';L.innerHTML='';
+  const buka=$('#bukaYoutube');buka.hidden=!id;if(id)buka.href='https://www.youtube.com/watch?v='+id;
+  if(id){const f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+id+'?rel=0&modestbranding=1';f.title=v.judul||'Video pembelajaran';
+    f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.loading='lazy';f.referrerPolicy='strict-origin-when-cross-origin';L.appendChild(f);}
+  else L.innerHTML='<div class="kosong-video"><b>Video segera hadir</b><span>Guru akan memasang video pembelajaran di sini.</span></div>';
+  document.querySelectorAll('#daftarVideo button').forEach((b,j)=>b.setAttribute('aria-pressed',j===i?'true':'false'));}
+if(DAFTAR.length>1)DAFTAR.forEach((v,i)=>{const b=document.createElement('button');b.type='button';b.innerHTML=`<b>Video ${i+1}</b>`;b.append(v.judul||'Video');b.onclick=()=>putarVideo(i);$('#daftarVideo').appendChild(b);});
+putarVideo(0);
 
 /* ---------- EKG kepala + jantung simulasi (canvas) ---------- */
 function gambarJantung(c,x,y,s,fase){const p=1+.16*Math.exp(-fase*9);c.save();c.translate(x,y);c.scale(s*p,s*p);c.beginPath();
@@ -270,20 +317,39 @@ function soal(){const k=$('#kotakSoal');k.innerHTML='';$('#barKuis').style.width
 soal();
 
 /* ---------- LACAK BUG: seret (pointer) atau ketuk ---------- */
+// [teks, bug?, alasan, perbaikan] · lv = Mudah/Sedang/Sulit
 const MISI=[
- {n:'Kartu 1',b:[['PEMANASAN: jalan 1 menit',0],['ULANGI KALI: squat 20 detik',1,'ULANGI tanpa jumlah.','ULANGI 2 KALI: squat 20 detik'],['Lompat tali 30 detik',0],['Plank 5 menit',1,'Terlalu lama dan tidak aman.','Plank lutut 20 detik'],['PENDINGINAN: jalan santai 1 menit',0]]},
- {n:'Kartu 2',b:[['PEMANASAN: lari cepat 2 menit',1,'Pemanasan harus ringan.','PEMANASAN: jalan 1 menit, ayun lengan 10 kali'],['ULANGI 2 KALI: engklek 20 detik',0],['Jumping jack',1,'Tidak ada durasi atau jumlah.','Jumping jack 30 detik'],['JIKA tidak bisa bicara MAKA jalan pelan 30 detik',0],['PENDINGINAN: peregangan 1 menit',0]]},
- {n:'Kartu 3',b:[['PENDINGINAN: peregangan 1 menit',1,'Pendinginan ada di awal. Seharusnya di akhir program.','Pindahkan ke akhir, sebelum SELESAI'],['PEMANASAN: jalan 1 menit, ayun lengan 10 kali',0],['ULANGI 100 KALI: lari zig-zag 30 detik',1,'Ulangannya terlalu banyak (sekitar 50 menit).','ULANGI 3 KALI: lari zig-zag 30 detik'],['Ukur denyut nadi sambil berlari',1,'Denyut nadi diukur saat berhenti, bukan sambil berlari.','Berhenti, lalu ukur denyut nadi'],['JIKA pusing MAKA berhenti dan lapor guru',0]]}];
-let mIdx=0,diToples=new Set(),sudahPeriksa=false;
-const pm=$('#pilihMisi');MISI.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.className='tombol dua';b.style.fontSize='18px';b.textContent=m.n;b.dataset.m=i;b.onclick=()=>{mIdx=i;mulaiMisi();};pm.appendChild(b);});
-function mulaiMisi(){diToples=new Set();sudahPeriksa=false;$('#penjelas').innerHTML='';$('#infoBug').textContent='';
-  pm.querySelectorAll('button').forEach(b=>{const on=+b.dataset.m===mIdx;b.style.background=on?'var(--kuning)':'';b.style.color=on?'#2B1A3F':'';b.setAttribute('aria-pressed',on);});gambarMisi();}
-function barisEl(i){const [teks]=MISI[mIdx].b[i];const b=document.createElement('button');b.type='button';b.className='baris';b.dataset.i=i;b.textContent=teks;
+ {n:'Kartu 1',lv:'Mudah',b:[['PEMANASAN: jalan 1 menit',0],['ULANGI KALI: squat 20 detik',1,'ULANGI tanpa jumlah.','ULANGI 2 KALI: squat 20 detik'],['Lompat tali 30 detik',0],['Plank 5 menit',1,'Terlalu lama dan tidak aman.','Plank lutut 20 detik'],['PENDINGINAN: jalan santai 1 menit',0]]},
+ {n:'Kartu 2',lv:'Mudah',b:[['PEMANASAN: lari cepat 2 menit',1,'Pemanasan harus ringan.','PEMANASAN: jalan 1 menit, ayun lengan 10 kali'],['ULANGI 2 KALI: engklek 20 detik',0],['Jumping jack',1,'Tidak ada durasi atau jumlah.','Jumping jack 30 detik'],['JIKA tidak bisa bicara MAKA jalan pelan 30 detik',0],['PENDINGINAN: peregangan 1 menit',0]]},
+ {n:'Kartu 3',lv:'Mudah',b:[['PEMANASAN: jalan 1 menit, putar bahu 10 kali',0],['Squat dengan punggung bungkuk 20 detik',1,'Teknik salah dan berisiko cedera.','Squat dengan punggung lurus 20 detik'],['Engklek kotak 30 detik',0],['Lompat tali',1,'Tidak ada durasi atau jumlah.','Lompat tali 30 detik'],['PENDINGINAN: jalan santai 1 menit',0]]},
+ {n:'Kartu 4',lv:'Sedang',b:[['PENDINGINAN: peregangan 1 menit',1,'Pendinginan ada di awal. Seharusnya di akhir program.','Pindahkan ke akhir, sebelum SELESAI'],['PEMANASAN: jalan 1 menit, ayun lengan 10 kali',0],['ULANGI 100 KALI: lari zig-zag 30 detik',1,'Ulangannya terlalu banyak (sekitar 50 menit).','ULANGI 3 KALI: lari zig-zag 30 detik'],['Ukur denyut nadi sambil berlari',1,'Denyut nadi diukur saat berhenti, bukan sambil berlari.','Berhenti, lalu ukur denyut nadi'],['JIKA pusing MAKA berhenti dan lapor guru',0]]},
+ {n:'Kartu 5',lv:'Sedang',b:[['PEMANASAN: jalan 1 menit',0],['ULANGI 2 KALI: (tidak ada gerakan)',1,'ULANGI tidak berisi gerakan yang diulang.','ULANGI 2 KALI: lari bolak-balik 20 detik'],['Plank lutut 20 detik',0],['Lari terus sampai tidak bisa bicara',1,'Berbahaya. Melanggar uji bicara.','Lari 30 detik. JIKA tidak bisa bicara MAKA jalan pelan'],['PENDINGINAN: lari cepat 1 menit',1,'Pendinginan harus gerak pelan.','PENDINGINAN: jalan santai 1 menit']]},
+ {n:'Kartu 6',lv:'Sedang',b:[['PEMANASAN: ayun lengan',1,'Tidak ada jumlah.','PEMANASAN: ayun lengan 10 kali'],['ULANGI 3 KALI: jumping jack 20 detik, jalan 10 detik',0],['Lakukan gerakan yang tadi',1,'Perintahnya tidak jelas. Gerakan apa?','Squat 20 detik'],['JIKA tidak bisa bicara MAKA jalan pelan 30 detik',0],['Ukur denyut nadi saat berhenti',0],['PENDINGINAN: peregangan 1 menit',0]]},
+ {n:'Kartu 7',lv:'Sulit',b:[['PEMANASAN: jalan 1 menit, ayun lengan 10 kali',0],['ULANGI 2 KALI: squat 20 detik, lompat tali 30 detik',0],['JIKA napas sampai level 5 MAKA lari lebih cepat',1,'Aturan keselamatannya terbalik.','JIKA napas sampai level 5 MAKA turunkan ke jalan'],['JIKA pusing atau mual MAKA lanjutkan plank',1,'Tidak aman. Saat pusing harus berhenti.','JIKA pusing atau mual MAKA berhenti dan lapor guru'],['JIKA tidak bisa bicara MAKA jalan pelan 30 detik',0],['PENDINGINAN: jalan santai dan peregangan',0]]},
+ {n:'Kartu 8',lv:'Sulit',jadwal:true,b:[['JIKA hujan MAKA senam di teras 15 menit',0],['JIKA sudah main HP 30 menit MAKA main HP 30 menit lagi',1,'Aturan ini tidak membuatmu bergerak.','JIKA sudah main HP 30 menit MAKA lakukan 20 jumping jack'],['JIKA hari Minggu MAKA bersepeda bersama keluarga 30 menit',0],['Target bergerak: 10 menit sehari',1,'Terlalu sedikit. Anjurannya rata-rata minimal 60 menit sehari.','Target bergerak: rata-rata 60 menit sehari'],['JIKA lelah sekali MAKA istirahat dan minum air',0]]},
+ {n:'Kartu 9',lv:'Sulit',b:[['PEMANASAN: jalan 1 menit, ayun lengan 10 kali',0],['ULANGI 2 KALI: lari bolak-balik 200 detik',1,'Terlalu lama untuk satu ulangan.','ULANGI 2 KALI: lari bolak-balik 20 detik'],['Minum air di tempat teduh',0],['Plank tanpa istirahat 3 menit',1,'Terlalu lama dan tidak aman.','Plank lutut 20 detik'],['ULANGI 50 KALI: squat 20 detik',1,'Ulangannya terlalu banyak.','ULANGI 2 KALI: squat 20 detik'],['PENDINGINAN: jalan santai 1 menit, napas dalam 5 kali',0]]}];
+// bahan Kartu Acak: baris inti (bukan pemanasan/pendinginan/jadwal) dari semua kartu, supaya urutannya tetap masuk akal
+const BANK=MISI.filter(m=>!m.jadwal).flatMap(m=>m.b).filter(x=>!/^(PEMANASAN|PENDINGINAN)/.test(x[0]));
+const BUKA=['PEMANASAN: jalan 1 menit, ayun lengan 10 kali',0],TUTUP=['PENDINGINAN: jalan santai 1 menit, peregangan',0];
+function acak(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function kartuAcak(){const bug=acak(BANK.filter(x=>x[1])),ok=acak(BANK.filter(x=>!x[1])),nb=2+Math.floor(Math.random()*2);
+  const tengah=acak([...bug.slice(0,nb),...ok.slice(0,4-nb+1)]);return{n:'Kartu Acak',lv:'Acak',b:[BUKA,...tengah,TUTUP]};}
+let mIdx=0,KARTU=MISI[0],diToples=new Set(),sudahPeriksa=false;
+const pm=$('#pilihMisi'),WARNA_LV={Mudah:'var(--tosca)',Sedang:'var(--biru)',Sulit:'var(--koral)',Acak:'var(--ungu)'};
+function tombolMisi(){const selesai=ambil('es-bug2',{});pm.innerHTML='';
+  ['Mudah','Sedang','Sulit'].forEach(lv=>{const g=document.createElement('div');g.className='grupLv';g.innerHTML=`<span class="lv" style="background:${WARNA_LV[lv]}">${lv}</span>`;
+    MISI.forEach((m,i)=>{if(m.lv!==lv)return;const b=document.createElement('button');b.type='button';b.className='tombol dua kecilT';b.dataset.m=i;b.textContent=m.n.replace('Kartu ','')+(selesai[i]?' ✓':'');b.setAttribute('aria-label',m.n+(selesai[i]?', sudah selesai':''));b.onclick=()=>{mIdx=i;KARTU=MISI[i];mulaiMisi();};g.appendChild(b);});pm.appendChild(g);});
+  const a=document.createElement('button');a.type='button';a.className='tombol kecilT';a.style.background='var(--ungu)';a.dataset.m='acak';a.textContent='Kartu Acak';a.onclick=()=>{mIdx='acak';KARTU=kartuAcak();mulaiMisi();};pm.appendChild(a);
+  const n=Object.keys(selesai).length;const p=document.createElement('span');p.className='kecil';p.textContent=`${n} dari ${MISI.length} kartu selesai`;pm.appendChild(p);}
+function mulaiMisi(){diToples=new Set();sudahPeriksa=false;$('#penjelas').innerHTML='';$('#infoBug').textContent='';tombolMisi();
+  pm.querySelectorAll('button').forEach(b=>{const on=String(b.dataset.m)===String(mIdx);b.style.outline=on?'4px solid var(--kuning)':'';b.style.outlineOffset=on?'2px':'';b.setAttribute('aria-pressed',on);});
+  const jml=KARTU.b.filter(x=>x[1]).length;$('#targetBug').innerHTML=`<span class="lv" style="background:${WARNA_LV[KARTU.lv]}">${KARTU.lv}</span> ${KARTU.n}: cari <b>${jml} bug</b>${KARTU.jadwal?' di Jadwal Gerakku':''}`;gambarMisi();}
+function barisEl(i){const [teks]=KARTU.b[i];const b=document.createElement('button');b.type='button';b.className='baris';b.dataset.i=i;b.textContent=teks;
   b.setAttribute('aria-label',(diToples.has(i)?'Di toples: ':'Di program: ')+teks+'. Ketuk untuk memindahkan.');
-  if(sudahPeriksa){const bug=MISI[mIdx].b[i][1];if(diToples.has(i))b.classList.add(bug?'bug':'oke');}
+  if(sudahPeriksa){const bug=KARTU.b[i][1];if(diToples.has(i))b.classList.add(bug?'bug':'oke');}
   pasangSeret(b,i);return b;}
-function gambarMisi(){const pr=$('#program'),tp=$('#toples');pr.innerHTML='<div class="ujung">MULAI</div>';
-  MISI[mIdx].b.forEach((_,i)=>{if(!diToples.has(i))pr.appendChild(barisEl(i));});pr.insertAdjacentHTML('beforeend','<div class="ujung">SELESAI</div>');
+function gambarMisi(){const pr=$('#program'),tp=$('#toples');pr.innerHTML=KARTU.jadwal?'<div class="ujung">JADWAL GERAKKU</div>':'<div class="ujung">MULAI</div>';
+  KARTU.b.forEach((_,i)=>{if(!diToples.has(i))pr.appendChild(barisEl(i));});if(!KARTU.jadwal)pr.insertAdjacentHTML('beforeend','<div class="ujung">SELESAI</div>');
   tp.querySelectorAll('.baris').forEach(e=>e.remove());[...diToples].sort().forEach(i=>tp.appendChild(barisEl(i)));$('#toplesKosong').hidden=diToples.size>0;}
 function pindah(i){if(sudahPeriksa){sudahPeriksa=false;$('#penjelas').innerHTML='';$('#infoBug').textContent='';}diToples.has(i)?diToples.delete(i):diToples.add(i);gambarMisi();}
 function pasangSeret(el,i){let mulai=null,hantu=null,geser=false;
@@ -297,12 +363,16 @@ function pasangSeret(el,i){let mulai=null,hantu=null,geser=false;
     if(diAtas!==diToples.has(i))pindah(i);};
   el.addEventListener('pointerup',akhir);el.addEventListener('pointercancel',e=>{mulai=null;el.style.opacity='';if(hantu){hantu.remove();hantu=null;}});
   el.addEventListener('click',e=>{if(e.detail===0)pindah(i);});}
-$('#periksa').onclick=()=>{sudahPeriksa=true;const B=MISI[mIdx].b,jml=B.filter(x=>x[1]).length;let kena=0,salah=0;const pj=$('#penjelas');pj.innerHTML='';
+$('#periksa').onclick=()=>{sudahPeriksa=true;const B=KARTU.b,jml=B.filter(x=>x[1]).length;let kena=0,salah=0;const pj=$('#penjelas');pj.innerHTML='';
   B.forEach((x,i)=>{if(diToples.has(i)&&x[1])kena++;if(diToples.has(i)&&!x[1])salah++;});
   B.forEach((x,i)=>{if(x[1]&&diToples.has(i))pj.insertAdjacentHTML('beforeend',`<div><b>Bug tertangkap:</b> "${x[0]}". ${x[2]} Perbaikan: <b style="color:var(--tosca)">${x[3]}</b></div>`);
     else if(!x[1]&&diToples.has(i))pj.insertAdjacentHTML('beforeend',`<div class="ok"><b>Bukan bug:</b> "${x[0]}" sudah benar. Kembalikan ke program.</div>`);});
   const sisa=jml-kena;$('#infoBug').textContent=sisa===0&&salah===0?`Hebat! Semua ${jml} bug tertangkap.`:`${kena} dari ${jml} bug tertangkap${salah?`, ${salah} baris benar ikut masuk`:''}. ${sisa?'Masih ada bug yang lolos!':''}`;
-  if(sisa===0&&salah===0){const s=ambil('es-bug',{});s[mIdx]=1;simpan('es-bug',s);}gambarMisi();};
+  if(sisa===0&&salah===0&&mIdx!=='acak'){const s=ambil('es-bug2',{});s[mIdx]=1;simpan('es-bug2',s);tombolMisi();
+    pm.querySelectorAll('button').forEach(b=>{const on=String(b.dataset.m)===String(mIdx);b.style.outline=on?'4px solid var(--kuning)':'';b.style.outlineOffset=on?'2px':'';});}
+  gambarMisi();};
+$('#ulangBug').textContent='Ulangi kartu';
+$('#kartuLain').onclick=()=>{if(mIdx==='acak'){KARTU=kartuAcak();mulaiMisi();return;}mIdx=(mIdx+1)%MISI.length;KARTU=MISI[mIdx];mulaiMisi();};
 $('#ulangBug').onclick=mulaiMisi;
 mulaiMisi();
 </script>
